@@ -23,7 +23,10 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto, file) {
-    const avatar = await this.image.uploadFile(file.buffer, file.originalname);
+    let avatar = null;
+    if (file) {
+      avatar = await this.image.uploadFile(file.buffer, file.originalname);
+    }
     const foundedUser = await this.findByEmailAndPhoneNumber(
       createUserDto.auth.email,
       createUserDto.phoneNumber,
