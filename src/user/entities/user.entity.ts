@@ -14,11 +14,10 @@ import {Publication} from "../../publication/entities/publication.entity";
 import {UserActivity} from "./user-activity.entity";
 import {UserRating} from "./user-rating.entity";
 import {RealtySale} from "../../realty/entities/realty-sale.entity";
-import {RealtyRentEntity} from "../../realty/entities/realty-rent.entity";
+import { RealtyRent } from '../../realty/entities/realty-rent.entity';
 import {UserReviews} from "./user-reviews.entity";
 import {UserNotes} from "./user-notes.entity";
 import {PublicationReviews} from "../../publication/entities/publication-reviews.entity";
-// import {UserActivity} from "./user-activity.entity";
 
 @Entity()
 export class User {
@@ -58,12 +57,12 @@ export class User {
     @JoinColumn()
     rating: UserRating;
 
-    @OneToOne(() => RealtyRentEntity, {cascade: true})
+    @OneToOne(() => RealtySale, {cascade: true})
     @JoinColumn()
     sale: RealtySale;
 
-    @OneToMany(() => RealtyRentEntity, (realtyRent: RealtyRentEntity) => realtyRent.tenant, {cascade: true, nullable: true})
-    rent: RealtyRentEntity[] | null;
+    @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.tenant, {cascade: true, nullable: true})
+    rent: RealtyRent[] | null;
 
     @OneToMany(() => UserReviews, (userReviews: UserReviews) => userReviews.writtenBy, {cascade: true, nullable: true})
     writtenReview: UserReviews[] | null;

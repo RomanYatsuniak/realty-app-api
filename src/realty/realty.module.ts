@@ -4,9 +4,10 @@ import { RealtyController } from './realty.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Publication } from '../publication/entities/publication.entity';
 import { Image } from './entities/image.entity';
+import { RealtyRent } from './entities/realty-rent.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Image])],
+  imports: [TypeOrmModule.forFeature([Image, RealtyRent])],
   controllers: [RealtyController],
   providers: [RealtyService],
 })

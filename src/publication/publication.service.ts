@@ -39,8 +39,6 @@ export class PublicationService {
       publicant: user,
     });
     const savedPublication = await this.publication.save(createdPublication);
-
-    // console.log(savedPublication.realty.realtyId)
     await this.realtyService.createRealtyPhotos(
       savedPublication.realty,
       photosLinks,
@@ -63,7 +61,7 @@ export class PublicationService {
     const { realty, ...publicationParams } = params;
     const publications = await this.publication.find({
       where: { ...publicationParams, realty },
-      relations: ['realty'],
+      relations: ['realty', 'realty.images'],
     });
     return publications;
   }
@@ -71,17 +69,19 @@ export class PublicationService {
   async findAllPublications(limit) {
     if (limit) {
       return await this.publication.find({
-        relations: ['realty'],
+        relations: ['realty', 'realty.images'],
         take: limit,
       });
     }
-    return await this.publication.find({ relations: ['realty'] });
+    return await this.publication.find({
+      relations: ['realty', 'realty.images'],
+    });
   }
 
   async findUserPublications(user: User) {
     const publications = await this.publication.find({
       where: { publicant: user },
-      relations: ['realty'],
+      relations: ['realty', 'realty.images'],
     });
     return publications;
   }

@@ -1,7 +1,7 @@
 import {Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Publication} from "../../publication/entities/publication.entity";
 import {Image} from "./image.entity";
-import {RealtyRentEntity} from "./realty-rent.entity";
+import {RealtyRent} from "./realty-rent.entity";
 import {RealtySale} from "./realty-sale.entity";
 
 @Entity()
@@ -36,8 +36,8 @@ export class Realty {
     @OneToMany(() => Image, (image: Image) => image.realty, {cascade: true, nullable: true})
     images: Image[] | null;
 
-    @OneToMany(() => RealtyRentEntity, (realtyRent: RealtyRentEntity) => realtyRent.realty, {cascade: true, nullable: true})
-    rentInfo: RealtyRentEntity[] | null;
+    @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.realty, {cascade: true, nullable: true})
+    rentInfo: RealtyRent[] | null;
 
     @OneToOne(() => RealtySale, (realtySale: RealtySale) => realtySale.realty)
     @JoinColumn()

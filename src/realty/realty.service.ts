@@ -6,10 +6,14 @@ import { Publication } from '../publication/entities/publication.entity';
 import { Repository } from 'typeorm';
 import { Image } from './entities/image.entity';
 import { Realty } from './entities/realty.entity';
+import { RealtyRent } from './entities/realty-rent.entity';
 
 @Injectable()
 export class RealtyService {
-  constructor(@InjectRepository(Image) private image: Repository<Image>) {}
+  constructor(
+    @InjectRepository(Image) private image: Repository<Image>,
+    @InjectRepository(RealtyRent) private realtyRent: Repository<RealtyRent>,
+  ) {}
   create(createRealtyDto: CreateRealtyDto) {
     return 'This action adds a new realty';
   }
@@ -41,15 +45,15 @@ export class RealtyService {
 
   reserveRealty() {}
 
-  changeReservingRealty() {}
-
   removeReservingRealty() {}
 
   getUserReservedRealty() {}
 
-  reserveToBuyRealty() {}
+  getOwnerReservedRealty() {}
 
-  removeFromToBuy() {}
+  // reserveToBuyRealty() {}
+  //
+  // removeFromToBuy() {}
 
   buyRealty() {}
 

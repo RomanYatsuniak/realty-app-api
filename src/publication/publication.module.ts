@@ -9,9 +9,10 @@ import { SharedModule } from '../shared/shared.module';
 import { RealtyService } from '../realty/realty.service';
 import { RealtyModule } from '../realty/realty.module';
 import { Image } from '../realty/entities/image.entity';
+import { RealtyRent } from '../realty/entities/realty-rent.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Publication, Realty, PublicationReviews, Image]), SharedModule, RealtyModule],
+  imports: [TypeOrmModule.forFeature([Publication, Realty, PublicationReviews, Image, RealtyRent]), SharedModule, RealtyModule],
   controllers: [PublicationController],
   providers: [PublicationService, RealtyService],
   exports: [PublicationService],
