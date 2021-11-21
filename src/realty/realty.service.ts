@@ -1,9 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRealtyDto } from './dto/create-realty.dto';
 import { UpdateRealtyDto } from './dto/update-realty.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Publication } from '../publication/entities/publication.entity';
+import { Repository } from 'typeorm';
+import { Image } from './entities/image.entity';
+import { Realty } from './entities/realty.entity';
 
 @Injectable()
 export class RealtyService {
+  constructor(@InjectRepository(Image) private image: Repository<Image>) {}
   create(createRealtyDto: CreateRealtyDto) {
     return 'This action adds a new realty';
   }
@@ -24,46 +30,32 @@ export class RealtyService {
     return `This action removes a #${id} realty`;
   }
 
-  reserveRealty() {
-
+  async createRealtyPhotos(realty: Realty, links: string[]) {
+    await Promise.all(
+      links.map(async (link) => {
+        const createdImage = this.image.create({ imageUrl: link, realty });
+        await this.image.save(createdImage);
+      }),
+    );
   }
 
-  changeReservingRealty() {
+  reserveRealty() {}
 
-  }
+  changeReservingRealty() {}
 
-  removeReservingRealty() {
+  removeReservingRealty() {}
 
-  }
+  getUserReservedRealty() {}
 
-  getUserReservedRealty() {
+  reserveToBuyRealty() {}
 
-  }
+  removeFromToBuy() {}
 
-  reserveToBuyRealty() {
+  buyRealty() {}
 
-  }
+  getRentingStatistics() {}
 
-  removeFromToBuy() {
+  getSoldRealties() {}
 
-  }
-
-  buyRealty() {
-
-  }
-
-  getRentingStatistics() {
-
-  }
-
-  getSoldRealties() {
-
-  }
-
-  getRentedRealtiesInfo() {
-
-  }
-
-
+  getRentedRealtiesInfo() {}
 }
-

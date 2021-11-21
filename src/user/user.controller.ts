@@ -9,14 +9,14 @@ import {
   Delete,
   UseGuards,
   UseInterceptors,
-  UploadedFile
+  UploadedFile,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import {AuthGuard} from "@nestjs/passport";
-import {CreateUserReviewDto} from "./dto/create-user-review.dto";
-import {FileInterceptor} from "@nestjs/platform-express";
+import { AuthGuard } from '@nestjs/passport';
+import { CreateUserReviewDto } from './dto/create-user-review.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 export class UserController {
@@ -24,7 +24,10 @@ export class UserController {
 
   @Post()
   @UseInterceptors(FileInterceptor('avatar'))
-  async create(@Body('data') createUserDto, @UploadedFile() avatar: Express.Multer.File) {
+  async create(
+    @Body('data') createUserDto,
+    @UploadedFile() avatar: Express.Multer.File,
+  ) {
     const userInfo: CreateUserDto = JSON.parse(createUserDto);
     return await this.userService.create(userInfo, avatar);
   }
@@ -37,7 +40,7 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Get('userInfo')
   async getUserInfo(@Request() req) {
-    return await this.userService.findUser(req.user)
+    return await this.userService.findUser(req.user);
   }
 
   @UseGuards(AuthGuard('jwt'))
@@ -77,13 +80,12 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('createReview')
-  async createReview(@Request() req, @Body() createReviewDto: CreateUserReviewDto) {
+  async createReview(
+    @Request() req,
+    @Body() createReviewDto: CreateUserReviewDto,
+  ) {
     return await this.userService.createReviewToUser(req.user, createReviewDto);
   }
-
-
-
-
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
