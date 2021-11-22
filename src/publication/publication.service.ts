@@ -60,7 +60,7 @@ export class PublicationService {
   async findPublicationByParameter(params) {
     const { realty, ...publicationParams } = params;
     const publications = await this.publication.find({
-      where: { ...publicationParams, realty },
+      where: { ...publicationParams, realty: { ...realty } },
       relations: ['realty', 'realty.images'],
     });
     return publications;
@@ -119,7 +119,7 @@ export class PublicationService {
 
   async getPublicationsToBuy() {
     const publications = await this.publication.find({
-      where: { publicationType: PublicationType.FOR_SALE },
+      where: { publicationType: PublicationType.FOR_SELL },
     });
     return publications;
   }
