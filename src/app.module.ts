@@ -20,6 +20,12 @@ import { RealtyRent } from './realty/entities/realty-rent.entity';
 import { RealtySale } from './realty/entities/realty-sale.entity';
 import { UserNotes } from './user/entities/user-notes.entity';
 import { PublicationReviews } from './publication/entities/publication-reviews.entity';
+import {
+  BuyerAdditionalInfo,
+} from './realty/entities/buyer-additional-info.entity';
+import {
+  SellerAdditionalInfo,
+} from './realty/entities/seller-additional-info.entity';
 
 @Module({
   imports: [
@@ -40,6 +46,8 @@ import { PublicationReviews } from './publication/entities/publication-reviews.e
         RealtySale,
         UserNotes,
         PublicationReviews,
+        BuyerAdditionalInfo,
+        SellerAdditionalInfo,
       ],
     }),
     ConfigModule.forRoot({
