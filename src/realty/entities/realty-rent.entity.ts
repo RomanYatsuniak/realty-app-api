@@ -13,10 +13,10 @@ export class RealtyRent {
   @PrimaryGeneratedColumn()
   rentId: number;
 
-  @Column()
+  @Column({ type: 'timestamp' })
   rentedFrom: Date;
 
-  @Column()
+  @Column({ type: 'timestamp' })
   rentedTo: Date;
 
   @Column()
@@ -24,6 +24,9 @@ export class RealtyRent {
 
   @Column()
   rentPrice: number;
+
+  @Column()
+  daysCount: number;
 
   @ManyToOne(() => Realty, (realty: Realty) => realty.rentInfo)
   realty: Realty;
