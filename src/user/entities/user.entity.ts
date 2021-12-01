@@ -52,8 +52,9 @@ export class User {
 
   @OneToMany(
     () => Publication,
-    (publication: Publication) => publication.publicant,
-    { cascade: true, nullable: true },
+    (publication: Publication) => publication.publicant
+    // ,
+    // { cascade: true, nullable: true },
   )
   publication: Publication[] | null;
 
@@ -65,37 +66,45 @@ export class User {
   // @JoinColumn()
   // sale: RealtySale;
 
-
-  @OneToMany(() => RealtySale, (realtyRent: RealtySale) => realtyRent.buyer, {
-    cascade: true,
-    nullable: true,
-  })
+  @OneToMany(() => RealtySale, (realtyRent: RealtySale) => realtyRent.buyer
+    // , {
+    // cascade: true,
+    // nullable: true,
+// }
+)
   sale: RealtySale[] | null;
 
-  @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.tenant, {
-    cascade: true,
-    nullable: true,
-  })
+  @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.tenant
+    // , {
+    // cascade: true,
+    // nullable: true,
+  // }
+  )
   rent: RealtyRent[] | null;
 
   @OneToMany(
     () => UserReviews,
-    (userReviews: UserReviews) => userReviews.writtenBy,
-    { cascade: true, nullable: true },
+    (userReviews: UserReviews) => userReviews.writtenBy
+    // ,
+    // { cascade: true, nullable: true },
   )
   writtenReview: UserReviews[] | null;
 
   @OneToMany(
     () => UserReviews,
-    (userReviews: UserReviews) => userReviews.user,
-    { cascade: true, nullable: true },
+    (userReviews: UserReviews) => userReviews.user
+    // ,
+    // { cascade: true, nullable: true },
   )
   reviews: UserReviews[] | null;
 
-  @OneToMany(() => UserNotes, (userNotes: UserNotes) => userNotes.user, {
-    cascade: true,
-    nullable: true,
-  })
+  @OneToMany(() => UserNotes, (userNotes: UserNotes) => userNotes.user
+  //   ,
+  //   {
+  //   cascade: true,
+  //   nullable: true,
+  // }
+  )
   notes: UserReviews[] | null;
 
   @CreateDateColumn({ type: 'timestamp' })
@@ -104,7 +113,7 @@ export class User {
   @OneToMany(
     () => PublicationReviews,
     (publicationReviews: PublicationReviews) => publicationReviews.reviewer,
-    { cascade: true, nullable: true },
+    // { cascade: true, nullable: true},
   )
   publicationReviews: PublicationReviews[] | null;
 }

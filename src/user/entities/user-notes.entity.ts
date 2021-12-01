@@ -10,10 +10,10 @@ export class UserNotes {
     @CreateDateColumn({type: "timestamp"})
     createdAt: Date;
 
-    @ManyToOne(() => User, (user: User) => user.notes, {onDelete: "CASCADE"})
+    @ManyToOne(() => User, (user: User) => user.notes, { cascade: true, onDelete: "CASCADE" })
     user: User;
 
-    @ManyToOne(() => Publication, (publication: Publication) => publication.notes, {onDelete: "CASCADE"})
+    @ManyToOne(() => Publication, (publication: Publication) => publication.notes, { cascade: true, onDelete: "CASCADE" })
     publication: Publication;
 
 }

@@ -16,9 +16,9 @@ export class PublicationReviews {
     @CreateDateColumn({type: "timestamp"})
     createdAt: Date;
 
-    @ManyToOne(() => Publication, (publication: Publication) => publication.review)
+    @ManyToOne(() => Publication, (publication: Publication) => publication.review, { cascade: true, onDelete: "CASCADE" })
     publication: Publication;
 
-    @ManyToOne(() => User, (user: User) => user.publicationReviews)
+    @ManyToOne(() => User, (user: User) => user.publicationReviews, { cascade: true, onDelete: "CASCADE" })
     reviewer: User;
 }

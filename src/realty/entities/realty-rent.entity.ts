@@ -28,9 +28,9 @@ export class RealtyRent {
   @Column()
   daysCount: number;
 
-  @ManyToOne(() => Realty, (realty: Realty) => realty.rentInfo)
+  @ManyToOne(() => Realty, (realty: Realty) => realty.rentInfo, { cascade: true, onDelete: "CASCADE" })
   realty: Realty;
 
-  @ManyToOne(() => User, (user: User) => user.rent)
+  @ManyToOne(() => User, (user: User) => user.rent, { cascade: true, onDelete: "CASCADE" })
   tenant: User;
 }

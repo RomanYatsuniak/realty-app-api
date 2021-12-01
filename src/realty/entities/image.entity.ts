@@ -1,15 +1,18 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "../../user/entities/user.entity";
-import {Realty} from "./realty.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../user/entities/user.entity';
+import { Realty } from './realty.entity';
 
 @Entity()
 export class Image {
-    @PrimaryGeneratedColumn()
-    id: number
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    imageUrl: string;
+  @Column()
+  imageUrl: string;
 
-    @ManyToOne(() => Realty, (realty: Realty) => realty.images)
-    realty: Realty;
+  @ManyToOne(() => Realty, (realty: Realty) => realty.images, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  realty: Realty;
 }

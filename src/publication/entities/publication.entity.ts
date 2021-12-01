@@ -36,7 +36,7 @@ export class Publication {
     @Column()
     price: number;
 
-    @ManyToOne(() => User, (user: User) => user.publication)
+    @ManyToOne(() => User, (user: User) => user.publication, { cascade: true, onDelete: "CASCADE" })
     publicant: User;
 
     @CreateDateColumn({type: "timestamp"})
@@ -46,10 +46,15 @@ export class Publication {
     @JoinColumn()
     realty: Realty;
 
-    @OneToMany(() => UserNotes, (userNotes: UserNotes) => userNotes.publication, {cascade: true, nullable: true})
+    @OneToMany(() => UserNotes, (userNotes: UserNotes) => userNotes.publication)
+// ,
+// {cascade: true, nullable: true}
+// )
     notes: UserNotes[] | null;
 
-    @OneToMany(() => PublicationReviews, (publicationReviews: PublicationReviews) => publicationReviews.publication, {cascade: true, nullable: true})
+    @OneToMany(() => PublicationReviews, (publicationReviews: PublicationReviews) => publicationReviews.publication
+      // , {cascade: true, nullable: true}
+    )
     review: PublicationReviews[] | null;
 
 }

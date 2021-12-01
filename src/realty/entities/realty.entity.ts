@@ -40,16 +40,23 @@ export class Realty {
   @OneToOne(() => Publication, (publication: Publication) => publication.realty)
   publication: Publication;
 
-  @OneToMany(() => Image, (image: Image) => image.realty, {
-    cascade: true,
-    nullable: true,
-  })
+  @OneToMany(() => Image, (image: Image) => image.realty,
+  //   {
+  //   cascade: true,
+  //   nullable: true,
+  //   onDelete: 'CASCADE',
+  // }
+  )
   images: Image[] | null;
 
-  @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.realty, {
-    cascade: true,
-    nullable: true,
-  })
+
+  @OneToMany(() => RealtyRent, (realtyRent: RealtyRent) => realtyRent.realty,
+  //   {
+  //   cascade: true,
+  //   nullable: true,
+  //   onDelete: 'CASCADE'
+  // }
+  )
   rentInfo: RealtyRent[] | null;
 
   @OneToOne(() => RealtySale, { cascade: true, onDelete: 'CASCADE' })
