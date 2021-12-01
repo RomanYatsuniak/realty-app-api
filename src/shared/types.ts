@@ -1,4 +1,4 @@
 export enum PublicationType {
-    FOR_SELL = 'sell',
+    FOR_SELL = 'sale',
     FOR_RENT = 'rent'
 }
