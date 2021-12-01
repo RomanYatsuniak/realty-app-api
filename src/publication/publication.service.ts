@@ -120,6 +120,7 @@ export class PublicationService {
   async getPublicationsToBuy() {
     const publications = await this.publication.find({
       where: { publicationType: PublicationType.FOR_SELL },
+      relations: ['realty', 'realty.images'],
     });
     return publications;
   }
@@ -127,6 +128,7 @@ export class PublicationService {
   async getPublicationsToRent() {
     const publications = await this.publication.find({
       where: { publicationType: PublicationType.FOR_RENT },
+      relations: ['realty', 'realty.images'],
     });
     return publications;
   }
