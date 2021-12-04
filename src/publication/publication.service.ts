@@ -49,7 +49,7 @@ export class PublicationService {
   async findPublicationById(publicationId: number) {
     const publication = await this.publication.findOne({
       where: { publicationId },
-      relations: ['realty', 'realty.images'],
+      relations: ['realty', 'realty.images', 'publicant', 'review'],
     });
     if (publication) {
       return publication;
