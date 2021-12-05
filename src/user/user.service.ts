@@ -62,7 +62,10 @@ export class UserService {
   }
 
   async findUserById(id) {
-    return await this.userRepository.findOne({ id });
+    return await this.userRepository.find({
+      where: { id },
+      relations: ['writtenReview', 'writtenReview.writtenBy'],
+    });
   }
 
   async findByEmail(email: string) {
@@ -101,7 +104,7 @@ export class UserService {
   async getUserReviews(user: User) {
     const aboutUserReviews = await this.userReviewsRepository.find({
       where: { user },
-      relations: ['writtenBy'],
+      relations: ['writtenBy', 'user'],
     });
     return aboutUserReviews;
   }
