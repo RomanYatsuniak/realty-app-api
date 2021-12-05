@@ -112,7 +112,7 @@ export class UserService {
   async getUserNotes(user: User) {
     const userNotes = await this.userNotesRepository.find({
       where: { user },
-      relations: ['publication'],
+      relations: ['publication', 'publication.realty'],
     });
     if (userNotes) {
       return userNotes;
