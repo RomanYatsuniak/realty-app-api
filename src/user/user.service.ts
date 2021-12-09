@@ -58,7 +58,7 @@ export class UserService {
   }
 
   async findUser(user) {
-    return await this.userRepository.findOne(user);
+    return await this.userRepository.findOne(user.userId);
   }
 
   async findUserById(id) {
