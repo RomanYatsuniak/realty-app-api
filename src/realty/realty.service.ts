@@ -235,7 +235,7 @@ export class RealtyService {
   async getMyPurchaseList(user: User) {
     return await this.realtySale.find({
       where: { buyer: user },
-      relations: ['buyer', 'realty', 'realty.publication'],
+      relations: ['buyer', 'realty', 'realty.publication', 'realty.images'],
     });
   }
 
