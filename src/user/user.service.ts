@@ -58,7 +58,9 @@ export class UserService {
   }
 
   async findUser(user) {
-    return await this.userRepository.findOne(user.userId);
+    console.log(user.id);
+    const u = await this.userRepository.findOne(user.id);
+    return u;
   }
 
   async findUserById(id) {

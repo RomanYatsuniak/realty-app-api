@@ -40,6 +40,7 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Get('userInfo')
   async getUserInfo(@Request() req) {
+    console.log(req.user);
     return await this.userService.findUser(req.user);
   }
 
