@@ -141,7 +141,8 @@ export class UserService {
   }
 
   async removeFromNotes(publicationId: number) {
-    const publication = await this.userNotesRepository.find({
+    console.log(publicationId);
+    const publication = await this.userNotesRepository.findOne({
       where: { publication: { publicationId } },
       relations: ['publication'],
     });

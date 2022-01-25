@@ -7,7 +7,7 @@ export class ImageService {
     const s3 = new S3();
     const res = await s3
       .upload({
-        Bucket: 'realty-app',
+        Bucket: 'realty-images',
         Body: dataBuffer,
         Key: `${uuid()}-${fileName}`,
       })
