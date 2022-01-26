@@ -86,17 +86,32 @@ export class PublicationService {
     return publications;
   }
 
-  async updateUserPublication(
-    id: number,
-    updatePublicationDto: UpdatePublicationDto,
-    user: User,
-  ) {
-    const publication = await this.publication.findOne({ publicationId: id });
+  async updateUserPublication(id: number, updatePublicationDto, user: User) {
+    const publication = await this.publication.findOne({
+      where: { publicationId: id },
+      relations: ['realty', 'realty.images'],
+    });
+    // console.log(publication, updatePublicationDto)
+
     if (publication) {
-      return await this.publication.save({
+      updatePublicationDto.realty.images = [];
+      // _.merge(publication, [updatePublicationDto]);
+      const updatedPublication = {
         ...publication,
         ...updatePublicationDto,
-      });
+        realty: {
+          ...updatePublicationDto.realty,
+          images: publication.realty.images,
+        },
+      };
+      console.log(updatedPublication);
+      return await this.publication.save(updatedPublication);
+      // console.log(updatedPublication);
+      // return '';
+      // updatePublicationDto.realty.images = publication.realty.images;
+      // console.log((publication.publicationTitle = 'Test2'));
+      // console.log(updatedPublication);
+      // return await this.publication.save(updatedPublication);
     }
     throw new HttpException('Publication not found', HttpStatus.NOT_FOUND);
   }
