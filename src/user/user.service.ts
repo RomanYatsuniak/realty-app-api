@@ -27,6 +27,7 @@ export class UserService {
     if (file) {
       avatar = await this.image.uploadFile(file.buffer, file.originalname);
     }
+    console.log(file);
     const foundedUser = await this.findByEmailAndPhoneNumber(
       createUserDto.auth.email,
       createUserDto.phoneNumber,

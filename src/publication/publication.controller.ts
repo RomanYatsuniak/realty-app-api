@@ -52,7 +52,7 @@ export class PublicationController {
   async findAll(@Query() query) {
     return await this.publicationService.findAllPublications(query.limit);
   }
-  @Get('find')
+  @Post('find')
   async findByParameter(@Body() body) {
     return await this.publicationService.findPublicationByParameter(body);
   }

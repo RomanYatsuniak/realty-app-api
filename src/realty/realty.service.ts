@@ -153,6 +153,7 @@ export class RealtyService {
     )) as RealtyRent[];
     let sumCostForAllTime = 0;
     const month = [];
+    console.log(reservations);
     reservations.forEach((real) => {
       const date = dayjs(real.rentedFrom).format('YYYY/MM');
       const index = month.findIndex((m) => m.date === date);
@@ -176,7 +177,7 @@ export class RealtyService {
     const realty = await this.realty.findOne(id, {
       relations: ['publication'],
     });
-
+    console.log(realty);
     if (realty.publication.publicationType === 'rent') {
       throw new HttpException(
         'Can buy only realty of selling type',

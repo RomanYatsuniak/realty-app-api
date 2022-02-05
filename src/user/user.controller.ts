@@ -29,6 +29,8 @@ export class UserController {
     @UploadedFile() avatar: Express.Multer.File,
   ) {
     const userInfo: CreateUserDto = JSON.parse(createUserDto);
+    console.log(avatar);
+    // return '';
     return await this.userService.create(userInfo, avatar);
   }
 
