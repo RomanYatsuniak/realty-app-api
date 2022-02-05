@@ -58,6 +58,7 @@ export class PublicationService {
   }
 
   async findPublicationByParameter(params) {
+    //
     const { realty, ...publicationParams } = params;
     const publications = await this.publication.find({
       where: { ...publicationParams, realty: { ...realty } },
