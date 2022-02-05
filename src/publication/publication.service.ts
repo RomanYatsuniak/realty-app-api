@@ -141,7 +141,6 @@ export class PublicationService {
   }
 
   async getPublicationsToRent() {
-    //
     const publications = await this.publication.find({
       where: { publicationType: PublicationType.FOR_RENT },
       relations: ['realty', 'realty.images'],
