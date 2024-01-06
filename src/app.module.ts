@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,12 +21,8 @@ import { RealtyRent } from './realty/entities/realty-rent.entity';
 import { RealtySale } from './realty/entities/realty-sale.entity';
 import { UserNotes } from './user/entities/user-notes.entity';
 import { PublicationReviews } from './publication/entities/publication-reviews.entity';
-import {
-  BuyerAdditionalInfo,
-} from './realty/entities/buyer-additional-info.entity';
-import {
-  SellerAdditionalInfo,
-} from './realty/entities/seller-additional-info.entity';
+import { BuyerAdditionalInfo } from './realty/entities/buyer-additional-info.entity';
+import { SellerAdditionalInfo } from './realty/entities/seller-additional-info.entity';
 
 @Module({
   imports: [
@@ -52,9 +49,9 @@ import {
     }),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
-        AWS_REGION: Joi.string().required(),
-        AWS_ACCESS_KEY_ID: Joi.string().required(),
-        AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+        REGION: Joi.string().required(),
+        KEY_ID: Joi.string().required(),
+        ACCESS_KEY: Joi.string().required(),
       }),
     }),
     UserModule,
